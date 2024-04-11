@@ -6,7 +6,7 @@ metadata:
   name: port-app
   namespace: default
 spec:
-  replicas: 4
+  replicas: 3
   selector:
     matchLabels:
       app: port-app
