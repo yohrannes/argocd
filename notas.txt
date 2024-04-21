@@ -1,6 +1,0 @@
-ip do ingress
-129.159.96.79
-
-
-ip pego do terraform
-150.136.76.72
