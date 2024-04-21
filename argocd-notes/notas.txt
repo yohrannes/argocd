@@ -1,8 +1,16 @@
 ## Mains informações em https://github.com/badtuxx/DescomplicandoArgoCD/blob/main/pt/src/day-1/README.md#instalando-o-argocd
 
-ubectl create namespace argocd
+## Criando namespace
+
+kubectl create namespace argocd
+
+## Instalando argocd no cluster
 
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+kubectl get pods -n argocd
+
+## Instalando client local
 
 curl -sSL -o argocd-linux-arm64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-arm64
 
@@ -10,8 +18,18 @@ sudo install -m 555 argocd-linux-arm64 /usr/local/bin/argocd
 
 rm argocd-linux-arm64
 
+argocd version
+
+## Verificando status dos serviços
+
+kubectl get svc -n argocd
+
 # Rodar local
 kubectl port-forward svc/argocd-server -n argocd 8080:443
+
+# Logando local via CLI
+
+argocd login localhost:8080
 
 # Pegar o password inicial
 kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d
