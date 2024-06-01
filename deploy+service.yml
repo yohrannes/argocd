@@ -41,4 +41,17 @@ spec:
             memory: 64Mi
       dnsPolicy: ClusterFirst
       restartPolicy: Always
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: port-app-svc
+  namespace: yohapp
+spec:
+  ports:
+  - port: 8088
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: port-app
+  type: ClusterIP
