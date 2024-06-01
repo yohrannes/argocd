@@ -14,18 +14,20 @@ spec:
     metadata:
       labels:
         app: port-app
+    spec:
       containers:
-      - image: yohrannes/website-portifolio:latest
-        name: port-app
-#        env:
-#        - name: HOSTNAME
-#          valueFrom:
-#            fieldRef:
-#              fieldPath: spec.nodeName
-#        - name: HOST_IP
-#          valueFrom:
-#            fieldRef:
-#              fieldPath: status.podIP
+      - name: port-app
+        image: yohrannes/website-portifolio:latest
+        # You can uncomment these lines to set the HOSTNAME and HOST_IP environment variables
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: HOST_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         ports:
         - containerPort: 5000
           protocol: TCP
@@ -38,17 +40,4 @@ spec:
             memory: 64Mi
       dnsPolicy: ClusterFirst
       restartPolicy: Always
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: port-app-svc
-  namespace: yohapp
-spec:
-  ports:
-  - port: 8088
-    protocol: TCP
-    targetPort: 5000
-  selector:
-    app: port-app
-  type: ClusterIP
+
