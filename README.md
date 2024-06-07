@@ -1,3 +1,3 @@
-# This repository contains all the files needed for implementation of the website yohrannes.com in ArgoCD K8s Service
+# This repository contains all the files needed for implementation of ArgoCD on k8s-cluster
 
 ![CD completed!](argocd-notes/RUNNING(°-°)b.webp)
